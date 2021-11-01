@@ -1,0 +1,14 @@
+import "tfrun"
+import "strings"
+
+is_delta_team = filter tfrun.workspace.tags as _, tag {
+	tag is "delta_team"
+} is not empty
+
+is_dev = filter tfrun.workspace.tags as _, tag {
+    tag is "dev"
+} is not empty
+
+main = rule {
+    is_delta_team and is_dev
+}
